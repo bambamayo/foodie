@@ -1,0 +1,26 @@
+:root {
+  --color-black: #1f2937;
+  --color-white: #ffffff;
+  --color-grey: #e5e7eb;
+  --color-primary: #3b82f6;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 65%;
+}
+
+body {
+  font-size: 1.4rem;
+  box-sizing: border-box;
+  color: var(--color-black);
+  line-height: 1.5;
+  font-family: "Montserrat", sans-serif;
+}
