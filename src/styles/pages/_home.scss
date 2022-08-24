@@ -1,0 +1,12 @@
+.home {
+  & .combination-inputs {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+
+    & > div {
+      width: 32%;
+    }
+  }
+}

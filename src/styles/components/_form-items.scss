@@ -1,0 +1,26 @@
+.formgroup {
+  height: auto;
+  width: 100%;
+}
+
+.input {
+  font-size: var(--fs-app);
+  color: var(--foodie-black);
+  font-weight: 500;
+  background: var(--app-white);
+  display: block;
+  width: 100%;
+  outline: none;
+  box-shadow: var(--bs-s);
+  border-radius: var(--br-s);
+  padding: 0.9rem 1.3rem;
+  height: 4.2rem;
+  line-height: 2.4rem;
+  border: 0.1rem solid var(--app-grey-border);
+
+  &::placeholder {
+    font-size: var(--fs-app);
+    color: var(--app-grey-border);
+    font-weight: 500;
+  }
+}
