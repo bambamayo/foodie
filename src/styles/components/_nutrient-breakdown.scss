@@ -4,11 +4,23 @@
 
   &__item {
     padding: 2rem;
+    position: relative;
 
     &:not(:last-child) {
       border-bottom: 0.1rem solid var(--app-grey-border);
       margin-bottom: 1rem;
     }
+  }
+
+  &__btn {
+    width: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   &__image {

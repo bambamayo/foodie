@@ -21,7 +21,9 @@ export function Home() {
   const [combinationThreeData, setCombinationThreeData] = React.useState<
     ISingleNutrients[]
   >([]);
-  const [pinnedCombinations, setPinnedCombinations] = React.useState([]);
+  const [tabInView, setTabInView] = React.useState<"combo" | "pinned">("combo");
+  const [pinnedCombinations, setPinnedCombinations] = React.useState<any>(null);
+  const [fetchingPinned, setFetchingPinned] = React.useState(false);
 
   function handleCompareButtonClicked(combination: string) {
     fetchNutrient.mutate(combination, {
@@ -50,69 +52,151 @@ export function Home() {
     });
   }
 
-  console.log(combinationOneData, combinationTwoData, combinationThreeData);
+  function handlePinFoodCombo(
+    combination: string,
+    combinationData: ISingleNutrients[]
+  ) {
+    if (!localStorage.getItem("data")) {
+      const data = {
+        [combination]: combinationData,
+      };
+      localStorage.setItem("data", JSON.stringify(data));
+    } else if (localStorage.getItem("data")) {
+      let data = localStorage.getItem("data");
+      if (data) {
+        const rawData = JSON.parse(data);
+        const newData = { ...rawData, [combination]: combinationData };
+        localStorage.setItem("data", JSON.stringify(newData));
+      }
+    }
+    toast(`Food combination #${combination} pinned succesfully`, {
+      type: "success",
+    });
+  }
+
+  React.useEffect(() => {
+    setFetchingPinned(true);
+    const data = localStorage.getItem("data");
+    setFetchingPinned(false);
+    if (data) {
+      setPinnedCombinations(JSON.parse(data));
+    } else {
+      return;
+    }
+  }, []);
 
   return (
     <div className="home">
       <Header />
-      <div className="page-wrapper">
-        <h2 className="section-header">
-          Enter two or more food combination and get their nutrients breakdown
-        </h2>
-        <div className="combination-inputs">
-          <div className="form-group">
-            <Input
-              name={combinationOne}
-              handleInputChange={(e) => setCombinationOne(e.target.value)}
-              type="text"
-              placeholder="e.g 1 plate of rice and 1 whole chicken"
-              value={combinationOne}
-            />
-            <button
-              disabled={fetchNutrient.isLoading || !combinationOne}
-              onClick={() => handleCompareButtonClicked(combinationOne)}
-              className="btn btn--black"
-            >
-              Get breakdown
-            </button>
-            <NutrientBreakdown breakdown={combinationOneData} />
-          </div>
-          <div className="formgroup">
-            <Input
-              name={combinationTwo}
-              handleInputChange={(e) => setCombinationTwo(e.target.value)}
-              type="text"
-              placeholder="e.g 1 plate of rice and 1 whole chicken"
-              value={combinationTwo}
-            />
-            <button
-              disabled={fetchNutrient.isLoading || !combinationTwo}
-              onClick={() => handleCompareButtonClicked(combinationTwo)}
-              className="btn btn--black"
-            >
-              Get breakdown
-            </button>
-            <NutrientBreakdown breakdown={combinationTwoData} />
-          </div>
-          <div className="formgroup">
-            <Input
-              name={combinationThree}
-              handleInputChange={(e) => setCombinationThree(e.target.value)}
-              type="text"
-              placeholder="e.g 1 plate of rice and 1 whole chicken"
-              value={combinationThree}
-            />
-            <button
-              disabled={fetchNutrient.isLoading || !combinationThree}
-              onClick={() => handleCompareButtonClicked(combinationThree)}
-              className="btn btn--black"
-            >
-              Get breakdown
-            </button>
-            <NutrientBreakdown breakdown={combinationThreeData} />
+      <div className="tabs">
+        <button
+          className="btn btn--black"
+          onClick={() => setTabInView("combo")}
+        >
+          Search for food combination nutrients
+        </button>
+        <button
+          className="btn btn--black"
+          onClick={() => setTabInView("pinned")}
+        >
+          View pinned food combination
+        </button>
+      </div>
+      {tabInView === "combo" ? (
+        <div className="page-wrapper">
+          <h2 className="section-header">
+            Enter two or more food combination and get their nutrients breakdown
+          </h2>
+          <div className="combination-inputs">
+            <div className="form-group">
+              <Input
+                name={combinationOne}
+                handleInputChange={(e) => setCombinationOne(e.target.value)}
+                type="text"
+                placeholder="e.g 1 plate of rice and 1 whole chicken"
+                value={combinationOne}
+              />
+              <button
+                disabled={fetchNutrient.isLoading || !combinationOne}
+                onClick={() => handleCompareButtonClicked(combinationOne)}
+                className="btn btn--black"
+              >
+                Get breakdown
+              </button>
+              <NutrientBreakdown
+                showButton={true}
+                buttonClicked={() =>
+                  handlePinFoodCombo(combinationOne, combinationOneData)
+                }
+                breakdown={combinationOneData}
+              />
+            </div>
+            <div className="formgroup">
+              <Input
+                name={combinationTwo}
+                handleInputChange={(e) => setCombinationTwo(e.target.value)}
+                type="text"
+                placeholder="e.g 1 plate of rice and 1 whole chicken"
+                value={combinationTwo}
+              />
+              <button
+                disabled={fetchNutrient.isLoading || !combinationTwo}
+                onClick={() => handleCompareButtonClicked(combinationTwo)}
+                className="btn btn--black"
+              >
+                Get breakdown
+              </button>
+              <NutrientBreakdown
+                showButton={true}
+                buttonClicked={() =>
+                  handlePinFoodCombo(combinationTwo, combinationTwoData)
+                }
+                breakdown={combinationTwoData}
+              />
+            </div>
+            <div className="formgroup">
+              <Input
+                name={combinationThree}
+                handleInputChange={(e) => setCombinationThree(e.target.value)}
+                type="text"
+                placeholder="e.g 1 plate of rice and 1 whole chicken"
+                value={combinationThree}
+              />
+              <button
+                disabled={fetchNutrient.isLoading || !combinationThree}
+                onClick={() => handleCompareButtonClicked(combinationThree)}
+                className="btn btn--black"
+              >
+                Get breakdown
+              </button>
+              <NutrientBreakdown
+                showButton={true}
+                buttonClicked={() =>
+                  handlePinFoodCombo(combinationThree, combinationThreeData)
+                }
+                breakdown={combinationThreeData}
+              />
+            </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <div className="page-wrapper">
+          <h2 className="section-header">View Pinned Combinations</h2>
+          {!pinnedCombinations ? (
+            <div className="pinned-empty">No pinned combinations</div>
+          ) : (
+            <div className="pinned-list">
+              {Object.keys(pinnedCombinations).map((item) => (
+                <NutrientBreakdown
+                  showButton={false}
+                  key={item}
+                  breakdown={pinnedCombinations[item]}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
