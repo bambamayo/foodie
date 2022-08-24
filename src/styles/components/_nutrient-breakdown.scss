@@ -1,0 +1,38 @@
+.nb {
+  box-shadow: var(--bs-l);
+  background-color: var(--color-white);
+
+  &__item {
+    padding: 2rem;
+
+    &:not(:last-child) {
+      border-bottom: 0.1rem solid var(--app-grey-border);
+      margin-bottom: 1rem;
+    }
+  }
+
+  &__image {
+    display: flex;
+    justify-content: center;
+    height: auto;
+
+    & img {
+      width: 10rem;
+      height: 10rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  &__info {
+    & span {
+      margin-bottom: 1rem;
+      &:first-child {
+        font-weight: 500;
+      }
+      &:last-child {
+        font-weight: 700;
+        margin-left: 2rem;
+      }
+    }
+  }
+}

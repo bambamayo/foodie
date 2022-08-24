@@ -1,1 +1,9 @@
-@import "base";
+@import "base/base";
+
+@import "components/button";
+@import "components/form-items";
+@import "components/header";
+@import "components/nutrient-breakdown";
+@import "components/logo";
+
+@import "pages/home";

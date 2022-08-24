@@ -1,0 +1,116 @@
+:root {
+  //colors
+  --foodie-black: #1f2937;
+  --app-white: #ffffff;
+  --foodie-primary: #3b82f6;
+  --app-grey-light: #f9fafb;
+  --app-grey-border: #d1d5db;
+  --app-red: #ef4444;
+  --app-success: #22c55e;
+
+  //font-sizes
+  --fs-app: 1.4rem;
+  --fs-text: 1.6rem;
+  --fs-header: 2.4rem;
+  --fs-subheader: 1.8rem;
+
+  --font-family: "Montserrat", sans-serif;
+
+  //border-radius
+  --br-s: 0.6rem;
+  --br-l: 0.8rem;
+  --br-c: 100%;
+
+  //box-shadow
+  --bs-s: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --bs-l: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 65%;
+}
+
+body {
+  font-size: 1.4rem;
+  box-sizing: border-box;
+  color: var(--color-black);
+  line-height: 1.5;
+  font-family: var(--font-family);
+  background-color: var(--app-grey-light);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: 0.2s ease-in-out;
+  border-radius: var(--br-6);
+}
+
+li {
+  list-style: none;
+}
+
+input,
+button {
+  font-family: var(--font-family);
+  outline: none;
+  transition: 0.2s ease-in-out;
+}
+
+button {
+  cursor: pointer;
+  background-color: transparent;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+input:focus-visible,
+button:focus-visible {
+  border: none;
+  outline: 0.3rem solid rgba(59, 130, 246, 0.3);
+}
+
+input {
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus {
+    border: 0.1rem solid var(--app-grey-border);
+    -webkit-text-fill-color: var(--foodie-black);
+    background-color: var(--app-white) !important;
+    box-shadow: 0 0 0px 1000px var(--app-white) inset;
+  }
+}
+
+.toastBody {
+  font-family: var(--font-family);
+  color: var(--foodie-black) !important;
+  font-size: var(--fs-app) !important;
+  font-weight: 500;
+}
+
+.page-wrapper {
+  width: 95%;
+  margin: 0 auto;
+  padding: 3rem 0;
+}
+
+.section-header {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.Toastify__toast-container .Toastify__toast-container--top-center {
+  width: auto;
+}

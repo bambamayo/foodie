@@ -1,0 +1,23 @@
+.btn {
+  font-size: var(--fs-app);
+  font-weight: 500;
+  background: transparent;
+  display: block;
+  width: 100%;
+  outline: none;
+  box-shadow: var(--bs-s);
+  border-radius: var(--br-s);
+  padding: 0.9rem 1.3rem;
+  height: 4.2rem;
+  border: none;
+
+  &--black {
+    background-color: var(--foodie-black);
+    color: var(--app-white);
+  }
+
+  &--blue {
+    background-color: var(--foodie-primary);
+    color: var(--app-white);
+  }
+}
