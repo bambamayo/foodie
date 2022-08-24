@@ -2,9 +2,15 @@ import { ISingleNutrients } from "../utils/interfaces/nutrients";
 
 type NutrientBreakdownProps = {
   breakdown: ISingleNutrients[];
+  buttonClicked?(): void;
+  showButton: boolean;
 };
 
-export function NutrientBreakdown({ breakdown }: NutrientBreakdownProps) {
+export function NutrientBreakdown({
+  breakdown,
+  buttonClicked,
+  showButton,
+}: NutrientBreakdownProps) {
   if (breakdown.length === 0) {
     return null;
   }
@@ -13,6 +19,11 @@ export function NutrientBreakdown({ breakdown }: NutrientBreakdownProps) {
       <div className="nb__list">
         {breakdown?.map((item) => (
           <div className="nb__item" key={item.food_name}>
+            {showButton ? (
+              <button onClick={buttonClicked} className="btn btn--blue nb__btn">
+                pin combo
+              </button>
+            ) : null}
             <div className="nb__image">
               <img src={item.photo.thumb} alt={item.food_name} />
             </div>

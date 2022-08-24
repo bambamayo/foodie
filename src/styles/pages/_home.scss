@@ -9,4 +9,35 @@
       width: 32%;
     }
   }
+
+  & .tabs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & button {
+      width: auto;
+      border-radius: 0 !important;
+
+      &:not(:last-child) {
+        margin-right: 2rem;
+      }
+    }
+  }
+
+  & .pinned-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+    gap: 3rem;
+  }
+
+  & .pinned-empty {
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+  }
 }
