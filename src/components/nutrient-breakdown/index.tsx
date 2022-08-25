@@ -1,4 +1,4 @@
-import { ISingleNutrients } from "../utils/interfaces/nutrients";
+import { ISingleNutrients } from "../../utils/interfaces/nutrients";
 
 type NutrientBreakdownProps = {
   breakdown: ISingleNutrients[];
@@ -25,7 +25,7 @@ export function NutrientBreakdown({
     return null;
   }
   return (
-    <div className="nb">
+    <div className="nb" data-testid="nb">
       <div className="nb__list">
         {breakdown?.map((item) => (
           <div className="nb__item" key={item.food_name}>
