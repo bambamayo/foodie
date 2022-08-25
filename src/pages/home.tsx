@@ -61,12 +61,20 @@ export function Home() {
         [combination]: combinationData,
       };
       localStorage.setItem("data", JSON.stringify(data));
+      setPinnedCombinations({
+        ...pinnedCombinations,
+        [combination]: combinationData,
+      });
     } else if (localStorage.getItem("data")) {
       let data = localStorage.getItem("data");
       if (data) {
         const rawData = JSON.parse(data);
         const newData = { ...rawData, [combination]: combinationData };
         localStorage.setItem("data", JSON.stringify(newData));
+        setPinnedCombinations({
+          ...pinnedCombinations,
+          [combination]: combinationData,
+        });
       }
     }
     toast(`Food combination #${combination} pinned succesfully`, {
@@ -93,13 +101,13 @@ export function Home() {
           className="btn btn--black"
           onClick={() => setTabInView("combo")}
         >
-          Search for food combination nutrients
+          Search for food nutrients
         </button>
         <button
           className="btn btn--black"
           onClick={() => setTabInView("pinned")}
         >
-          View pinned food combination
+          View pinned
         </button>
       </div>
       {tabInView === "combo" ? (
@@ -184,6 +192,8 @@ export function Home() {
           <h2 className="section-header">View Pinned Combinations</h2>
           {!pinnedCombinations ? (
             <div className="pinned-empty">No pinned combinations</div>
+          ) : fetchingPinned ? (
+            <div className="pinned-empty">Loading pinned combinations</div>
           ) : (
             <div className="pinned-list">
               {Object.keys(pinnedCombinations).map((item) => (
