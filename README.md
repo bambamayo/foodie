@@ -1,7 +1,13 @@
 # Foodie App
 
-**STEPS TO RUN THE APP**
+**TECHNOLOGIES AND LIBRARIES USED**
+- React
+- Scss
+- Formik
+- React query
+- Axios
 
+**STEPS TO RUN THE APP**
 - Clone this repo with `git clone {repo url}`
 - Create a .env.local file in the root directory file and add the following keys with their respective values
 
