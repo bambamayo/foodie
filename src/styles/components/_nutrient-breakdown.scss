@@ -17,7 +17,7 @@
     position: absolute;
     right: 0;
     top: 0;
-    height: 3rem;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,15 +36,27 @@
   }
 
   &__info {
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+
     & span {
-      margin-bottom: 1rem;
       &:first-child {
         font-weight: 500;
+        margin-right: 1rem;
+        display: inline-block;
       }
       &:last-child {
         font-weight: 700;
-        margin-left: 2rem;
+        display: inline-block;
+        height: 1.8rem;
       }
+    }
+
+    & div {
+      background-color: var(--foodie-black);
+      height: 1rem;
+      border: 0.2rem solid var(--foodie-black);
+      width: 100%;
     }
   }
 }
