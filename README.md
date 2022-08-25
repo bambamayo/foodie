@@ -23,3 +23,5 @@
 
 - Install app dependencies with `npm install`
 - Start app with `npm start` , your app should be available on http://localhost:3000
+
+- or view live at [view live](https://foodie-ayo.netlify.app/)
